@@ -1,6 +1,7 @@
 import React from 'react'
 
-function CreateProjectModel() {
+
+function CreateProjectModel({onClose}) {
   return (
     <>
       {/* Backdrop */}
