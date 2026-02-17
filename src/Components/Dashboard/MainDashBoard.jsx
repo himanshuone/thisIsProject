@@ -10,18 +10,22 @@ import NewProjectModal from "./CreateProject/CreateProjectModel"
 
 
 function MainDashBoard() {
-    const [newProjectStatus, setNewProjectStatus]=useState(false)
+  const [newProjectStatus, setNewProjectStatus] = useState(false)
+  const [projects, setProjects] = useState([]);
+  const addProject = (newProject) => {
+    setProjects(prev => [...prev, newProject]);
+  };
 
-  const openModel=()=>setNewProjectStatus(!newProjectStatus);
-  const closeModel=()=>setNewProjectStatus(!newProjectStatus);
+  const openModel = () => setNewProjectStatus(!newProjectStatus);
+  const closeModel = () => setNewProjectStatus(!newProjectStatus);
 
   return (
     <div className='mt-[8vh] bg-[#f9fafb] h-full min-h-[92vh]'>
 
-      <HeadingComponent onClick={openModel}/>
+      <HeadingComponent onClick={openModel} />
       <CounterComponent />
       {newProjectStatus && (
-        <NewProjectModal  onClose={closeModel} />
+        <NewProjectModal onClose={closeModel} onCreate={addProject} />
       )}
 
 
@@ -39,7 +43,7 @@ function MainDashBoard() {
                   </button>
                 </div>
               </div>
-              <ActiveProject />
+              <ActiveProject projects={projects}/>
             </div>
           </div>
           <div className=' col-span-2 flex-col '>
