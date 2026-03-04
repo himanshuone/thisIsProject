@@ -10,23 +10,23 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault()
-    setError('') // Reset error state
+    setError('') 
 
     try {
-      // 1. Send request to your Auth Route
+
       const response = await axios.post('http://localhost:3000/api/auth/login', {
         email,
         password
       })
 
-      // 2. Save the Token and User info
+
       localStorage.setItem('token', response.data.token)
       localStorage.setItem('user', JSON.stringify(response.data.user))
 
-      // 3. Redirect to Dashboard
+
       navigate('/dashboard')
     } catch (err) {
-      // Handle errors (Invalid credentials, server down, etc.)
+
       setError(err.response?.data?.message || 'Something went wrong. Please try again.')
     }
   }
